@@ -1,11 +1,35 @@
-/* Always set the map height explicitly to define the size of the div
-  * element that contains the map. */
-  #map {
-  height: 100%;
-}
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+/* Always set the map height explicitly to define the size of the div
+  * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.icon-search {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.sidenav-title {
+  line-height: 4.3rem;
+  font-size: 1.6rem;
+}
+
+.marker {
+  font-size: 1.3rem;
+  line-height: 2.6rem;
 }
