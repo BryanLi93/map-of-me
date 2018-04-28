@@ -13,11 +13,11 @@
         <div class="row">
           <div class="col s12 center-align hoverable sidenav-title red lighten-1 white-text">魂牵梦绕</div>
           <div class="col s12 relative">
-              <input value="" type="text">
-              <i class="material-icons icon icon-search">search</i>
+              <input type="text" data-bind="value: searchText">
+              <i class="material-icons icon icon-search" data-bind="click: searchClick">search</i>
           </div>
           <!-- ko foreach: markers -->
-              <div class="col s12 marker" data-bind="text: label"></div>
+              <div class="col s12 marker" data-bind="text: label, visible: isShown"></div>
           <!-- /ko -->
         </div>
       </div>
@@ -33,7 +33,9 @@
 
     
     <script>
-      var map;
+      var map,
+        mapMarkers,
+        mapInfoWindow;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 32.2140203, lng: 119.4682243},
@@ -44,6 +46,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwvs3rceCQW0Zc6YVYynn6q8DI58KKpg8&callback=initMap"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
     <script src="js/Views.js"></script>
     <script src="js/Models.js"></script>
     <script src="js/ViewModels.js"></script>
