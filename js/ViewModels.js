@@ -14,7 +14,6 @@ class ViewModels {
             }
         } else { // 初始化 Google Map 中的 Markers
             if (!window.google) {
-                alert('请使用科学上网并刷新！');
                 return;
             }
 
@@ -26,10 +25,21 @@ class ViewModels {
                 } else {
                     this.setAnimation(google.maps.Animation.BOUNCE);
                 }
-                window.mapInfoWindow.setContent(that.markers().find(marker => {
+                const marker = that.markers().find(marker => {
                     return marker.id === this.id;
-                }).desc);
-                window.mapInfoWindow.open(map, this);
+                });
+                placeSearch.searchNearBy("", [marker.lng, marker.lat], 500, (status, result) => {
+                    let text = '暂无信息';
+                    if (status === 'complete' && result.info === 'OK') {
+                        text = '附近有：';
+                        for (const p of result.poiList.pois) {
+                            text += p.name + '、';
+                        }
+                        text = text.substring(0, text.length - 1);
+                    }
+                    window.mapInfoWindow.setContent(text);
+                    window.mapInfoWindow.open(map, this);
+                });
             }
 
             for (let marker of markers) {
@@ -57,4 +67,7 @@ class ViewModels {
         this.renderMap();
     }
     
+    titleClick (marker) {
+        google.maps.event.trigger(window.mapMarkers[marker.id], 'click');
+    }
 };

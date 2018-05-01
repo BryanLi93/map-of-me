@@ -17,7 +17,7 @@
               <i class="material-icons icon icon-search" data-bind="click: searchClick">search</i>
           </div>
           <!-- ko foreach: markers -->
-              <div class="col s12 marker" data-bind="text: label, visible: isShown"></div>
+              <div class="col s12 marker" data-bind="text: label, visible: isShown, click: $parent.titleClick"></div>
           <!-- /ko -->
         </div>
       </div>
@@ -32,21 +32,12 @@
     </div>
 
     
-    <script>
-      var map,
-        mapMarkers,
-        mapInfoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 32.2140203, lng: 119.4682243},
-          zoom: 14
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwvs3rceCQW0Zc6YVYynn6q8DI58KKpg8&callback=initMap"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
+    <script src="js/init.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwvs3rceCQW0Zc6YVYynn6q8DI58KKpg8&callback=initMap" onerror="libLoadingErrorHandler('Google Map')"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js" onerror="libLoadingErrorHandler('Knockout')"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" onerror="libLoadingErrorHandler('Materialize')"></script>
+    <script src="http://wzrd.in/standalone/uuid%2Fv1@latest" onerror="libLoadingErrorHandler('Uuid')"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=381ae7ce0e7bdbba4ae9abb27dc4e81d&callback=AmapInit"></script> 
     <script src="js/Views.js"></script>
     <script src="js/Models.js"></script>
     <script src="js/ViewModels.js"></script>
